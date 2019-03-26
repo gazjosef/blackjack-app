@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
-class NavBar extends Component {
+class Buttons extends Component {
+  onClick = e => {
+    console.log("clicked");
+    this.props.dealPlayerCard();
+  };
   render() {
     return (
       <form id="controls" action="">
@@ -16,21 +20,21 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Deal"
-            onclick="startRound();return false;"
+            onClick={this.onClick}
           />
           <input
             id="decrease"
             className="button"
             type="reset"
             value="Decrease Bet"
-            onclick="changeBet(-5);return false;"
+            // onClick="changeBet(-5);return false;"
           />
           <input
             id="increase"
             className="button"
             type="reset"
             value="Increase Bet"
-            onclick="changeBet(+5);return false;"
+            // onClick="changeBet(+5);return false;"
           />
           <br />
           <input
@@ -38,7 +42,7 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Split"
-            onclick="playerSplit();return false;"
+            // onClick="playerSplit();return false;"
             disabled="disabled"
           />
           <input
@@ -46,7 +50,7 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Double"
-            onclick="playerDouble();return false;"
+            // onClick="playerDouble();return false;"
             disabled="disabled"
           />
           <input
@@ -54,7 +58,7 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Surrender"
-            onclick="playerSurrender();return false;"
+            // onClick="playerSurrender();return false;"
             disabled="disabled"
           />
           <br />
@@ -63,7 +67,7 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Hit"
-            onclick="playerHit();return false;"
+            // onClick="playerHit();return false;"
             disabled="disabled"
           />
           <input
@@ -71,7 +75,7 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Stand"
-            onclick="playerStand();return false;"
+            // onClick="playerStand();return false;"
             disabled="disabled"
           />
           <input
@@ -79,7 +83,7 @@ class NavBar extends Component {
             className="button"
             type="reset"
             value="Show Rules"
-            onclick="toggleRules();return false;"
+            // onClick="toggleRules();return false;"
           />
         </div>
       </form>
@@ -87,4 +91,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default Buttons;

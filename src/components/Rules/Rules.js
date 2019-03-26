@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class NavBar extends Component {
+class Rules extends Component {
   render() {
     return (
       <div id="rulesBox">
@@ -225,4 +225,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default Rules;

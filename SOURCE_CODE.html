@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    #output {
+      font-size: 1.5em;
+    }
+
+    .clubs,
+    .spades {
+      color: black;
+    }
+
+    .hearts,
+    .diams {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="message">Press Start Button</div>
+    <div id="start">
+      <button id="btnstart" type="button" onclick="Start()" class="btn">Start Game</button>
+    </div>
+    <div id="output">
+      Dealer Hand :
+      <div id="dealerHolder"></div>
+      Player Hand :
+      <div id="playerHolder"></div>
+    </div>
+    <script>
+      var cards = [];
+      var playerCard = [];
+      var dealerCard = [];
+      var cardCount = 0;
+      var suits = ["spades", "hearts", "clubs", "diams"];
+      var numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+      var output = document.getElementById("output");
+      var dealerHolder = document.getElementById("dealerHolder");
+      var playerHolder = document.getElementById("playerHolder");
+
+      for (s in suits) {
+        var suit = suits[s][0].toUpperCase();
+        var bgcolor = (suit == "S" || suit == "C") ? "black" : "red";
+        for (n in numb) {
+          //output.innerHTML += "<span style='color:" + bgcolor + "'>&" + suits[s] + ";" + numb[n] + "</span> ";
+          var cardValue = (n > 9) ? 10 : parseInt(n) + 1
+          var card = {
+            suit: suit,
+            icon: suits[s],
+            bgcolor: bgcolor,
+            cardnum: numb[n],
+            cardvalue: cardValue
+          }
+          cards.push(card);
+        }
+      }
+
+      function Start() {
+        shuffleDeck(cards);
+        dealNew();
+
+      }
+
+      function dealNew() {
+        playerCard = [];
+        dealerCard = [];
+        dealerHolder.innerHTML = "";
+        playerHolder.innerHTML = "";
+        for (x = 0; x < 2; x++) {
+          dealerCard.push(cards[cardCount]);
+          dealerHolder.innerHTML += cardOutput(cardCount);
+          cardCount++
+          playerCard.push(cards[cardCount]);
+          playerHolder.innerHTML += cardOutput(cardCount);
+          cardCount++
+        }
+        console.log(dealerCard);
+        console.log(playerCard);
+
+      }
+
+      function cardOutput(n) {
+        return "<span style='color:" + cards[cardCount].bgcolor + "'>" + cards[cardCount].cardnum + "&" + cards[cardCount].icon + ";</span>  "
+      }
+
+      function shuffleDeck(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        }
+        return array;
+      }
+
+      function outputCard() {
+        output.innerHTML += "<span style='color:" + cards[cardCount].bgcolor + "'>" + cards[cardCount].cardnum + "&" + cards[cardCount].icon + ";</span>  ";
+      }
+    </script>
+</body>
+
+</html>

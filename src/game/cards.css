@@ -1,0 +1,13 @@
+p {
+  font-size: 3em;
+}
+
+.clubs,
+.spades {
+  background-color: black;
+}
+
+.diams,
+.hearts {
+  background-color: red;
+}
