@@ -1,27 +1,10 @@
 import "./cards.css";
 
 class Deck {
-  constructor() {
-    this.deck = this.buildDeck();
+  start() {
+    this.buildDeck();
+    this.shuffleDeck();
   }
-
-  // render() {
-  //   const { deck } = this.state;
-  //   const rows = deck.map((card, index) => (
-  //     <div key={index} style={{ color: `${card.bgcolor}` }}>
-  //       {card.cardnum} of {card.icon};
-  //     </div>
-  //   ));
-
-  //   return (
-  //     <div>
-  //       <h1>Random Card</h1>
-  //       <div>Random Card</div>
-  //       <h1>Deck</h1>
-  //       <div>{rows}</div>
-  //     </div>
-  //   );
-  // }
 
   buildDeck() {
     const deck = [];
@@ -58,8 +41,16 @@ class Deck {
       }
     }
     console.log(deck);
-    return deck;
-    // const randomNum = Math.floor(Math.random() * 52 + 1);
+    this.deck = deck;
+  }
+
+  shuffleDeck() {
+    for (let i = this.deck.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = this.deck[i];
+      this.deck[i] = this.deck[j];
+      this.deck[j] = temp;
+    }
   }
 
   randomCard() {
@@ -73,36 +64,16 @@ class Deck {
     return card;
   }
   takeCard() {
-    const deck = this.deck;
-    const keys = Object.keys(deck);
+    const keys = Object.keys(this.deck);
 
     let i = keys.length - 1;
     const j = Math.floor(Math.random() * i);
-    const card = deck[keys[j]];
-    let copy = deck.slice(0);
-    copy.splice(j, 1);
-    console.log(copy);
-    this.setState({ deck: copy });
+    const card = this.deck[keys[j]];
+    this.deck.splice(j, 1);
+    console.log(this.deck);
+
     return card;
   }
-
-  /*
-  start() {
-    shuffleDeck(deck);
-  }
-
-  shuffleDeck() {
-    const deck = this.deck;
-
-    for (let i = deck.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      let temp = deck[i];
-      deck[i] = deck[j];
-      deck[j] = temp;
-    }
-    return deck;
-  }
-  */
 }
 
 export default Deck;

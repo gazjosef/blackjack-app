@@ -13,9 +13,27 @@ class App extends Component {
     super();
     this.deck = new Deck();
     this.state = {
-      playerCards: []
+      playerCards: [],
+      dealerCards: []
     };
   }
+
+  start = () => {
+    this.deck.start();
+    //let pc = [];
+    //let dc = [];
+    //let playerCard1 = this.deck.takeCard();
+    //let dealerCard1 = this.deck.takeCard();
+    //let playerCard2 = this.deck.takeCard();
+    //let dealerCard2 = this.deck.takeCard();
+    //
+    //pc.push(playerCard1);
+    //pc.push(playerCard2);
+    //dc.push(dealerCard1);
+    //dc.push(dealerCard2);
+    //
+    //this.setState({ playerCards: pc, dealerCards: dc });
+  };
 
   dealPlayerCard = () => {
     let cards = this.state.playerCards.slice(0);
